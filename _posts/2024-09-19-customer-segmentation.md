@@ -158,7 +158,7 @@ K-Means is an *unsupervised learning* algorithm, meaning that it does not look t
 
 The algorithm works in a way where it partitions data-points into distinct groups (clusters) based upon their *similarity* to each other.
 
-This similarity is most often the eucliedean (straight-line) distance between data-points in n-dimensional space.  Each variable that is included lies on one of the dimensions in space.
+This similarity is most often the Eucliedean (straight-line) distance between data-points in n-dimensional space.  Each variable that is included lies on one of the dimensions in space.
 
 The number of distinct groups (clusters) is determined by the value that is set for "k".
 
@@ -199,11 +199,11 @@ We don’t want any variables to be “bunched up” due to a single outlier val
 
 Again, as k-means is a distance based algorithm, in other words it is reliant on an understanding of how similar or different data points are across different dimensions in n-dimensional space, the application of Feature Scaling is extremely important.
 
-Feature Scaling is where we force the values from different columns to exist on the same scale, in order to enchance the learning capabilities of the model. There are two common approaches for this, Standardisation, and Normalisation.
+Feature Scaling is where we force the values from different columns to exist on the same scale, in order to enchance the learning capabilities of the model. There are two common approaches for this, Standardization, and Normalization.
 
-Standardisation rescales data to have a mean of 0, and a standard deviation of 1 - meaning most datapoints will most often fall between values of around -4 and +4.
+Standardization rescales data to have a mean of 0, and a standard deviation of 1 - meaning most datapoints will most often fall between values of around -4 and +4.
 
-Normalisation rescales datapoints so that they exist in a range between 0 and 1.
+Normalization rescales datapoints so that they exist in a range between 0 and 1.
 
 For k-means clustering, either approach is going to be *far better* than using no scaling at all.  Here, we will look to apply normalisation as this will ensure all variables will end up having the same range, fixed between 0 and 1, and therefore the k-means algorithm can judge each variable in the same context.  Standardisation *can* result in different ranges, variable to variable, and this is not so useful (although this isn't explcitly true in all scenarios).
 
