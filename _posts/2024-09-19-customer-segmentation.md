@@ -205,13 +205,13 @@ Standardization rescales data to have a mean of 0, and a standard deviation of 1
 
 Normalization rescales datapoints so that they exist in a range between 0 and 1.
 
-For k-means clustering, either approach is going to be *far better* than using no scaling at all.  Here, we will look to apply normalisation as this will ensure all variables will end up having the same range, fixed between 0 and 1, and therefore the k-means algorithm can judge each variable in the same context.  Standardisation *can* result in different ranges, variable to variable, and this is not so useful (although this isn't explcitly true in all scenarios).
+For k-means clustering, either approach is going to be *far better* than using no scaling at all.  Here, we will look to apply normalization as this will ensure all variables will end up having the same range, fixed between 0 and 1, and therefore the k-means algorithm can judge each variable in the same context.  Standardization *can* result in different ranges, variable to variable, and this is not so useful (although this isn't explcitly true in all scenarios).
 
-Another reason for choosing Normalisation over Standardisation is that our scaled data will *all* exist between 0 and 1, and these will then be compatible with any categorical variables that we have encoded as 1’s and 0’s (although we don't have any variables of this type in our task here).
+Another reason for choosing Normalization over Standardization is that our scaled data will *all* exist between 0 and 1, and these will then be compatible with any categorical variables that we have encoded as 1’s and 0’s (although we don't have any variables of this type in our task here).
 
-In our specific task here, we are using percentages, so our values are _already_ spread between 0 and 1.  We will still apply normalisation for the following reason.  One of the product areas might commonly make up a large proportion of customer sales, and this may end up dominating the clustering space.  If we normalise all of our variables, even product areas that make up smaller volumes, will be spread proportionately between 0 and 1!
+In our specific task here, we are using percentages, so our values are _already_ spread between 0 and 1.  We will still apply normalization for the following reason.  One of the product areas might commonly make up a large proportion of customer sales, and this may end up dominating the clustering space.  If we normalize all of our variables, even product areas that make up smaller volumes, will be spread proportionately between 0 and 1!
 
-The below code uses the in-built MinMaxScaler functionality from scikit-learn to apply Normalisation to all of our variables.  The reason we create a new object (here called data_for_clustering_scaled) is that we want to use the scaled data for clustering, but when profiling the clusters later on, we may want to use the actual percentages as this may make more intuitive business sense, so it's good to have both options available!
+The below code uses the in-built MinMaxScaler functionality from scikit-learn to apply Normalization to all of our variables.  The reason we create a new object (here called data_for_clustering_scaled) is that we want to use the scaled data for clustering, but when profiling the clusters later on, we may want to use the actual percentages as this may make more intuitive business sense, so it's good to have both options available!
 
 ```python
 
