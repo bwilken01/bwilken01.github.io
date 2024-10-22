@@ -5,7 +5,7 @@ image: "/posts/causal-impact-title-img.png"
 tags: [Causal Impact Analysis, Python]
 ---
 
-In this project we use Causal Impact Analysis to analyse & understand the sales uplift of customers that joined the new "Delivery Club" campaign!.
+In this project we use Causal Impact Analysis to analyze & understand the sales uplift of customers that joined the new "Delivery Club" campaign!
 
 # Table of contents
 
@@ -28,30 +28,30 @@ ___
 
 Earlier in the year, our client, a grocery retailer, ran a campaign to promote their new "Delivery Club" - an initiative that costs a customer $100 per year for membership, but offers free grocery deliveries rather than the normal cost of $10 per delivery.
 
-They want to understand if customers who did join the club have increased their spend in the three months following.  The hypothesis is that, if customers are not paying for deliveries, they will be tempted to shop more frequently, and hopefully purchase more each time.
+They want to understand if customers who did join the club have increased their spending the following three months.  The hypothesis is that, if customers are not paying for deliveries, they will be tempted to shop more frequently, and hopefully purchase more each time.
 
-The aim of this work is to understand and quantify the uplift in sales for customers that joined the club, over and above what they *would* have spent had the club not come into existence!
+The aim of this work is to understand and quantify the uplift in sales for customers that joined the club, over and above what they *would* have spent had the club not come into existence.
 
 <br>
 <br>
 ### Actions <a name="overview-actions"></a>
 
-We applied Causal Impact Analysis (see full details below) using the *pycausalimpact* library.
+We applied Causal Impact Analysis (see full details below) using the *pycausalimpact* library in Python.
 
 In the client database, we have a *campaign_data* table which shows us which customers received each type of "Delivery Club" mailer, which customers were in the control group, and which customers joined the club as a result.
 
-Since Delivery Club membership was open to *all customers* - the control group we have in the *campaign_data* table would help us measure the impact of *contacting* customers but here, we are actually look to measure the overall impact on sales from the Delivery Club itself.  Because of this, we instead used customers who did not sign up as the control.  The hypothesis was that customers who did not sign up should continue their normal shopping habits after the club went live, and this will help us create the counter-factual for the customers that did sign-up.
+Since Delivery Club membership was open to *all customers* - the control group we have in the *campaign_data* table would help us measure the impact of *contacting* customers, but here we are actually looking to measure the overall impact on sales from the Delivery Club itself.  Because of this, we instead used customers who did not sign up as the control.  The hypothesis was that customers who did not sign up should continue their normal shopping habits after the club went live, and this will help us create the counter-factual for the customers that did sign-up.
 
 Sales data was from the *transactions* table and was aggregated from a customer/transaction/product area level to customer/date level as per the requirements of the algorithm.
 
-We used a 3 months pre-period for the algorithm to model, 3 months post-period for the counterfactual.
+We used a 3-month pre-period for the algorithm to model and a 3-month post-period for the counterfactual.
 
 <br>
 <br>
 
 ### Results <a name="overview-results"></a>
 
-We saw a 41.1% uplift in sales for those customers that joined the Delivery Club, over and above what we believe they would have spent, had the club not been in existence.  This was across the three month post-period, and the uplift was deemed to be significantly significant (@ 95%).
+We saw a 41.1% uplift in sales for those customers that joined the Delivery Club, over and above what we believe they would have spent, had the club not been created.  This was across the three month post-period, and the uplift was deemed to be significantly significant (@ 95%).
 
 <br>
 <br>
@@ -65,7 +65,7 @@ It would be interesting to track this uplift over time and see if:
 * It flattens or returns to normal
 * We see any form of uplift pull-forward
 
-It would also be interesting to analyse what it is that is making up this uplift.  Are customers increasing their spend across the same categories - or are they buying into new categories
+It would also be interesting to analyze what it is that is making up this uplift.  Are customers increasing their spending across the same categories - or are they buying into new categories?
 
 <br>
 <br>
@@ -83,13 +83,13 @@ Depending on the industry - this could be the uplift in sales after a promotion 
 
 Whatever the scenario, the task is *essentially* the same - we want to understand how big this change was.
 
-But to understand this *robustly & reliably* we really need to understand what *would have happened* had the event not taken place.
+But to understand this, we really need to understand what *would have happened* had the event not taken place.
 
-In most cases the trends *preceding the event in question* isn’t tame, it is filled with lumps and bumps and ups and downs.  When some key event does take place, understanding what *would have happened had the event not taken place* so we can estimate the true impact can be difficult!
+In most cases the trend *preceding the event in question* isn't stable, it is filled with ups and downs.  When some key event does take place, understanding what *would have happened had the event not taken place*, so we can estimate the true impact, can be difficult!
 
-In many cases, the event that we’re analysing is part of a randomised & controlled experiment, and this means understanding the difference between the group that was affected by the event can be compared to a control group, that was purposely held back from the effect of the event.
+In many cases, the event that we’re analyzing is part of a randomized & controlled experiment, and this means understanding the difference between the group that was affected by the event can be compared to a control group, that was purposely held back from the effect of the event.
 
-But there are a lot of cases where we just can’t run a randomised experiment, either because it’s expensive, or potentially it’s just impossible.  As an example, in the case of measuring the change in a share price after an event, we don’t really have a direct control group to lean on for comparison purposes.
+But there are a lot of cases where we just can’t run a randomized experiment, either because it’s expensive, or potentially it’s just impossible.  As an example, in the case of measuring the change in a share price after an event, we don’t really have a direct control group for comparison purposes.
 
 An approach that works really well in both scenarios, is Causal Impact Analysis.
 
@@ -104,22 +104,22 @@ The *comparable data* that we pass in can be a control group, another set of rel
 
 It must not be affected by the event that we’re measuring, but it must be predictive of our output, or have some relationship with our initial time-series data.
 
-So, in the case of randomised experiment, we could use the control group as our additional set of data.
+So, in the case of randomized experiment, we could use the control group as our additional set of data.
 
 In the case where we don't have a control group, we need to find other sets of data that meet the aforementoined rules. These must not be affected by the event, but they should have some relationship or correlation with the time-series data we’re measuring.  If we were measuring stock prices, perhaps we could use other stocks that are in a similar industry to us.  If we were measuring the sales of a certain section of the grocery store, say health and beauty products, perhaps our second time-series could be the sales of another non-food category in the store.
 
 Either way, this additional data provides the algorithm insights into the trends of the data over time.
 
-The algorithm uses these insights to models the relationship between the two (or more) time-series in the pre-period.  In other words, it finds a set of rules that best predict the time-series of interest, based on the movements and fluctuations of the other time-series that we provided it.
+The algorithm uses these insights to model the relationship between the two (or more) time-series in the pre-period.  In other words, it finds a set of rules that best predict the time-series of interest, based on the movements and fluctuations of the other time-series that we provided it.
 
-Once the algorithm has modelled this relationship, it then looks to apply the learnings from this model in the post-period, the result of which is an estimation for the counterfactual, or what the model *believes would have happened* to our time series if our event never took place!
+Once the algorithm has modelled this relationship, it then looks to apply the learnings from this model in the post-period, the result of which is an estimation for the counterfactual, or what the model *believes would have happened* to our time series if our event never took place.
 
 Once we have this counterfactual, we can proceed to calculate the estimation for the causal effect, or in other words, the effect caused by our event!
 
 <br>
 #### Application
 
-Here we will utilise a Python package called **pycausalimpact** to apply this algorithm to our data.  This will model the relationships, and provide very useful plots and summarises to help us understand the results.
+Here we will utilize a Python package called **pycausalimpact** to apply this algorithm to our data.  This will model the relationships, and provide very useful plots and summaries to help us understand the results.
 
 ___
 <br>
@@ -127,7 +127,7 @@ ___
 
 In the client database, we have a *campaign_data* table which shows us which customers received each type of "Delivery Club" mailer, which customers were in the control group, and which customers joined the club as a result.
 
-Since Delivery Club membership was open to *all customers* - the control group we have in the *campaign_data* table would help us measure the impact of *contacting* customers but here, we are actually look to measure the overall impact on sales from the Delivery Club itself.  Because of this, we will instead just use customers who did not sign up as the control.  The customers who did not sign up should continue their normal shopping habits after the club went live, and this will help us create the counter-factual for the customers that did sign-up.
+Since Delivery Club membership was open to *all customers* - the control group we have in the *campaign_data* table would help us measure the impact of *contacting* customers but here, we are actually looking to measure the overall impact on sales from the Delivery Club itself.  Because of this, we will instead just use customers who did not sign up as the control.  The customers who did not sign up should continue their normal shopping habits after the club went live, and this will help us create the counter-factual for the customers that did sign-up.
 
 In the code below, we:
 
@@ -136,7 +136,7 @@ In the code below, we:
 * Aggregate the transactions table from customer/transaction/product area level to customer/date level
 * Merge on the signup flag from the *campaign_data* table
 * Pivot & aggregate to give us aggregated daily sales by signed-up/did not sign-up groups
-* Manoeuvre the data specifically for the pycausalimpact algorithm
+* Manipulate the data specifically for the pycausalimpact algorithm
 * Give our groups some meaningful names, to help with interpretation
 
 <br>
@@ -213,7 +213,7 @@ We can use the created object (called ci above) to examine & plot the results.
 
 ___
 <br>
-# Analysing The Results <a name="causal-impact-results"></a>
+# Analyzing The Results <a name="causal-impact-results"></a>
 
 <br>
 #### Plotting The Results
@@ -242,12 +242,12 @@ The vertical dotted line down the middle of each plot is the date that the Deliv
 
 The top chart shows the actual data for the impacted group as a black line, in other words the *actual* average daily sales for customers who did go on to sign up to the Delivery Club.  You can also see the counterfactual, which is shown with the blue dotted line.  The purple area around the blue dotted line represent the confidence intervals around the counterfactual - in other words, the range in which the algorithm believes the prediction should fall in.  A wider confidence interval suggests that the model is less sure about it's counterfactual prediction - and this is all taken into account when we look to quantify the actual uplift.
 
-Just eyeing this first chart, it does indeed look like there is some increase in daily average spend for customers who joined the club, over-and-above what the model suggests they would have done, if the club was never in existence.  We will look at the actual numbers for this very soon.
+Just eyeing this first chart, it does indeed look like there is some increase in daily average spending for customers who joined the club, over-and-above what the model suggests they would have done if the club was never in existence.  We will look at the actual numbers for this very soon.
 
 <br>
 **Chart 2:  Pointwise Effects**
 
-This second chart shows us, for each day (or data point in general) in our time-series, the *raw differences* between the actual values and the values for the counterfactual.  It is plotting the *differences* from Chart 1.  As an example, if on Day 1 the actual and the counterfactual were the same, this chart would show a value of 0.  If the actual is higher than the counterfactual then we would see a positive value on this chart, and vice versa.  It is essentially showing how far above or below the counterfactual, the actual values are.
+This second chart shows us, for each day (or data point in general) in our time-series, the *raw differences* between the actual values and the values for the counterfactual.  It is plotting the *differences* from Chart 1.  As an example, if on Day 1 the actual and the counterfactual were the same, this chart would show a value of 0.  If the actual is higher than the counterfactual, then we would see a positive value on this chart, and vice versa.  It is essentially showing how far above or below the counterfactual the actual values are.
 
 What is interesting here is that for the pre-period we see a difference surrounding zero, but in the post period we see mostly positive values mirroring what we saw in Chart 1 where the actual average spend was greater than the counterfactual.
 
@@ -338,4 +338,4 @@ It would be interesting to track this uplift over time and see if:
 * It flattens or returns to normal
 * We see any form of uplift pull-forward
 
-It would also be interesting to analyse what it is that is making up this uplift.  Are customers increasing their spend across the same categories - or are they buying into new categories
+It would also be interesting to analyze what it is that is making up this uplift.  Are customers increasing their spending across the same categories - or are they buying into new categories?
