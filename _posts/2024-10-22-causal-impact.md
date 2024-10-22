@@ -112,7 +112,7 @@ Either way, this additional data provides the algorithm insights into the trends
 
 The algorithm uses these insights to model the relationship between the two (or more) time-series in the pre-period.  In other words, it finds a set of rules that best predict the time-series of interest, based on the movements and fluctuations of the other time-series that we provided it.
 
-Once the algorithm has modelled this relationship, it then looks to apply the learnings from this model in the post-period, the result of which is an estimation for the counterfactual, or what the model *believes would have happened* to our time series if our event never took place.
+Once the algorithm has modeled this relationship, it then looks to apply the learnings from this model in the post-period, the result of which is an estimation for the counterfactual, or what the model *believes would have happened* to our time series if our event never took place.
 
 Once we have this counterfactual, we can proceed to calculate the estimation for the causal effect, or in other words, the effect caused by our event!
 
