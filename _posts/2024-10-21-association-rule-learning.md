@@ -327,7 +327,7 @@ apriori_rules_df.sort_values(by = "lift", ascending = False, inplace = True)
 ```
 
 <br>
-In the table below, we can see the ten highest product relationships, based upon Lift
+In the table below, we can see the ten highest product relationships, based upon Lift.
 <br>
 <br>
 
@@ -359,7 +359,7 @@ With the data now stored as a DataFrame, we will also go back to the client with
 
 An example of how this might work would be to test a hypothesis around New Zealand wines.
 
-The code below uses a string function to pull back all rows in the DataFrame where *product1* contains the words "New Zealand"
+The code below uses a string function to pull back all rows in the DataFrame where *product1* contains the words "New Zealand".
 
 ```python
 
