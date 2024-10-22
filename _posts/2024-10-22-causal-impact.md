@@ -17,7 +17,7 @@ In this project we use Causal Impact Analysis to analyze & understand the sales 
 - [01. Causal Impact Analysis Overview](#causal-impact-overview)
 - [02. Data Overview & Preparation](#causal-impact-data-prep)
 - [03. Applying Causal Impact Analysis](#causal-impact-fit)
-- [04. Analysing The Results](#causal-impact-results)
+- [04. Analyzing The Results](#causal-impact-results)
 - [05. Growth & Next Steps](#growth-next-steps)
 
 ___
