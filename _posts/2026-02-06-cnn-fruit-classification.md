@@ -66,9 +66,9 @@ Finally, we apply **Transfer Learning** to compare our network's results against
 
 ### Results <a name="overview-results"></a>
 
-We have made some huge strides in terms of making our network's predictions more accurate, and more reliable on new data.
+We achieved significant improvements in prediction accuracy and generalization to new data.
 
-Our baseline network suffered badly from overfitting - the addition of both Dropout & Image Augmentation eliminated this almost entirely.
+The baseline network showed substantial overfitting. The addition of dropout and image augmentation largely eliminated this issue.
 
 In terms of Classification Accuracy on the Test Set, we saw:
 
@@ -78,17 +78,17 @@ In terms of Classification Accuracy on the Test Set, we saw:
 * Optimized Architecture + Dropout + Image Augmentation: **95%**
 * Transfer Learning Using VGG16: **98%**
 
-Tuning the networks architecture with Keras-Tuner gave us a great boost, but was also very time intensive - however if this time investment results in improved accuracy then it is time well spent.
+Optimizing network architecture with Keras Tuner produced meaningful performance gains but required significant computational time. However, when this time investment leads to measurable accuracy improvements, it provides strong return on effort.
 
-The use of Transfer Learning with the VGG16 architecture was also a great success, in only 10 epochs we were able to beat the performance of our smaller, custom networks which were training over 50 epochs.  From a business point of view we also need to consider the overheads of (a) storing the much larger VGG16 network file, and (b) any increased latency on inference.
+Transfer learning using the VGG16 architecture also performed exceptionally well. In only 10 epochs, it exceeded the performance of our smaller custom networks, which required more than 50 epochs of training.  From a business point of view we also need to consider the overheads of (a) storing the much larger VGG16 network file, and (b) any increased latency on inference.
 
 <br>
 <br>
 ### Growth/Next Steps <a name="overview-growth"></a>
 
-The proof of concept was successful, we have shown that we can get very accurate predictions albeit on a small number of classes.  We need to showcase this to the client, discuss what it is that makes the network more robust, and then look to test our best networks on a larger array of classes.
+The proof of concept was successful. We demonstrated that the model can achieve high prediction accuracy, although currently across a limited number of classes. The next step is to present these results to the client, explain the factors that improved model robustness, and expand testing across a broader set of classes.
 
-Transfer Learning has been a big success, and was the best performing network in terms of classification accuracy on the Test Set - however we still only trained for a small number of epochs so we can push this even further.  It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
+Transfer learning was highly effective and delivered the strongest classification accuracy on the test set. However, the model was trained for a relatively small number of epochs, which indicates additional performance gains may still be achievable with further training.  It would also be valuable to evaluate other pre-trained architectures, including ResNet, Inception, and DenseNet, to determine whether they provide additional performance or efficiency advantages for this use case.
 
 <br>
 <br>
@@ -97,9 +97,9 @@ ___
 
 # Data Overview  <a name="data-overview"></a>
 
-To build out this proof of concept, the client has provided us some sample data. This is made up of images of six different types of fruit, sitting on the landing platform in the warehouse.
+To develop this proof of concept, the client provided sample data consisting of images of six different fruit types positioned on a warehouse landing platform.
 
-We randomly split the images for each fruit into training (60%), validation (30%) and test (10%) sets.
+We randomly split the images for each fruit class into training (60%), validation (30%), and test (10%) datasets.
 
 Examples of four images of each fruit class can be seen in the image below:
 
@@ -1367,4 +1367,5 @@ The proof of concept was successful, we have shown that we can get very accurate
 
 
 Transfer Learning has been a big success, and was the best performing network in terms of classification accuracy on the Test Set - however we still only trained for a small number of epochs so we can push this even further.  It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
+
 
