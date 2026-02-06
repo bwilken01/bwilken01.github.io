@@ -31,35 +31,35 @@ ___
 
 ### Context <a name="overview-context"></a>
 
-Our client had an interesting proposal put forward to them, and requested our help to assess whether it was viable.
+Our client received an interesting proposal and asked us to evaluate its viability.
 
-At a recent tech conference, they spoke to a contact from a robotics company that creates robotic solutions that help other businesses scale and optimize their operations.
+At a recent technology conference, they connected with a robotics company that develops robotic solutions to help businesses scale and optimize operations.
 
-Their representative mentioned that they had built a prototype for a robotic sorting arm that could be used to pick up and move products off a platform.  It would use a camera to "see" the product, and could be programmed to move that particular product into a designated bin, for further processing.
+The company shared that they had built a prototype robotic sorting arm. The arm can pick up products from a platform and move them to another location. It uses a camera to detect the product and can be programmed to place specific products into designated bins for further processing.
 
-The only thing they hadn't figured out was how to actually identify each product using the camera, so that the robotic arm could move it to the right place.
+However, they had not yet solved how to reliably identify each product using the camera so the robotic arm could route it correctly.
 
-We were asked to put forward a proof of concept on this - and were given some sample images of fruits from their processing platform.
+We were asked to develop a proof of concept and were provided with sample images of fruits from their processing platform.
 
-If this was successful and put into place on a larger scale, the client would be able to enhance their sorting & delivery processes.
+If implemented successfully at scale, this solution could significantly improve the client’s sorting and distribution processes.
 
 <br>
 <br>
 ### Actions <a name="overview-actions"></a>
 
-We utilise the *Keras* Deep Learning library for this task.
+We utilize the *Keras* Deep Learning library for this task.
 
-We start by creating our pipeline for feeding training & validation images in batches, from our local directory, into the network.  We investigate & quantify predictive performance epoch by epoch on the validation set, and then also on a held-back test set.
+We begin by building a data pipeline to feed training and validation images into the network in batches from a local directory. We tracked and quantified predictive performance at each epoch using the validation set, and then evaluated final performance on a held-out test set.
 
-Our baseline network is simple, but gives us a starting point to refine from.  This network contains **2 Convolutional Layers**, each with **32 filters** and subsequent **Max Pooling** Layers.  We have a **single Dense (Fully Connected) layer** following flattening with **32 neurons** followed by our output layer.  We apply the **relu** activation function on all layers, and use the **adam** optimizer.
+Our baseline network is simple, and gives us a starting point for refinement.  This network contains **2 Convolutional Layers**, each with **32 filters** and subsequent **Max Pooling** Layers.  We have a **single Dense (Fully Connected) layer** following flattening with **32 neurons** followed by our output layer.  We apply the **relu** activation function on all layers, and use the **adam** optimizer.
 
 Our first refinement is to add **Dropout** to tackle the issue of overfitting which is prevalent in the baseline network performance.  We use a **dropout rate of 0.5**.
 
-We then add in **Image Augmentation** to our data pipeline to increase the variation of input images for the network to learn from, resulting in a more robust results as well as also address overfitting.
+Then, we add **Image Augmentation** to our data pipeline to increase the variation of input images for the network to learn from, resulting in a more robust results as well as also address overfitting.
 
-With these additions in place, we utilise *keras-tuner* to optimize our network architecture & tune the hyperparameters.  The best network from this testing contains **3 Convolutional Layers**, each followed by **Max Pooling** Layers.  The first Convolutional Layer has **96 filters**, the second & third have **64 filters**.  The output of this third layer is flattened and passed to a **single Dense (Fully Connected) layer** with **160 neurons**.  The Dense Layer has **Dropout** applied with a **dropout rate of 0.5**.  The output from this is passed to the output layer.  Again, we apply the **relu** activation function on all layers, and use the **adam** optimizer.
+With these improvements in place, we utilize *keras-tuner* to optimize our network architecture & tune the hyperparameters.  The best network from this testing contains **3 Convolutional Layers**, each followed by **Max Pooling** Layers.  The first Convolutional Layer has **96 filters**, the second & third have **64 filters**.  The output of this third layer is flattened and passed to a **single Dense (Fully Connected) layer** with **160 neurons**.  The Dense Layer has **Dropout** applied with a **dropout rate of 0.5**.  The output from this is passed to the output layer.  Again, we apply the **relu** activation function on all layers, and use the **adam** optimizer.
 
-Finally, we utilise **Transfer Learning** to compare our network's results against that of the pre-trained **VGG16** network.
+Finally, we apply **Transfer Learning** to compare our network's results against that of the pre-trained **VGG16** network.
 
 <br>
 <br>
@@ -798,9 +798,9 @@ So far, with our Fruit Classification task, we have:
 
 * Started with a baseline model
 * Added Dropout to help with overfitting
-* Utilised Image Augmentation
+* Utilized Image Augmentation
 
-The addition of Dropout, and Image Augmentation boosted both performance and robustness - but there is one thing we've not tinkered with yet, and something that *could* have a big impact on how well the network learns to find and utilise important features for classifying our fruits - and that is the network *architecture*!
+The addition of Dropout, and Image Augmentation boosted both performance and robustness - but there is one thing we've not tinkered with yet, and something that *could* have a big impact on how well the network learns to find and utilize important features for classifying our fruits - and that is the network *architecture*!
 
 So far, we've just used 2 convolutional layers, each with 32 filters, and we've used a single Dense layer, also, just by coincidence, with 32 neurons - and we admitted that this was just a place to start, our baseline.
 
@@ -808,7 +808,7 @@ One way for us to figure out if there are *better* architectures, would be to ju
 
 As you can imagine, we could start testing all of these things, and noting down performances, but that would be quite messy.
 
-Here we will instead utilise *Keras Tuner* which will make this a whole lot easier for us!
+Here we will instead utilize *Keras Tuner* which will make this a whole lot easier for us!
 
 At a high level, with Keras Tuner, we will ask it to test, a whole host of different architecture and parameter options, based upon some specifications that we put in place.  It will go off and run some tests, and return us all sorts of interesting summary statistics, and of course information about what worked best.
 
@@ -1109,11 +1109,11 @@ ___
 <br>
 #### Transfer Learning Overview
 
-Transfer Learning is an extremely powerful way for us to utilise pre-built, and pre-trained networks, and apply these in a clever way to solve *our* specific Deep Learning based tasks.  It consists of taking features learned on one problem, and leveraging them on a new, similar problem!
+Transfer Learning is an extremely powerful way for us to utilize pre-built, and pre-trained networks, and apply these in a clever way to solve *our* specific Deep Learning based tasks.  It consists of taking features learned on one problem, and leveraging them on a new, similar problem!
 
 For image based tasks this often means using all the the *pre-learned* features from a large network, so all of the convolutional filter values and feature maps, and instead of using it to predict what the network was originally designed for, piggybacking it, and training just the last part for some other task.
 
-The hope is, that the features which have already been learned will be good enough to differentiate between our new classes, and we’ll save a whole lot of training time (and be able to utilise a network architecture that has potentially already been optimized).
+The hope is, that the features which have already been learned will be good enough to differentiate between our new classes, and we’ll save a whole lot of training time (and be able to utilize a network architecture that has potentially already been optimized).
 
 For our Fruit Classification task we will be utilising a famous network known as **VGG16**.  This was designed back in 2014, but even by todays standards is a fairly heft network.  It was trained on the famous *ImageNet* dataset, with over a million images across one thousand different image classes. Everything from goldfish to cauliflowers to bottles of wine, to scuba divers!
 
@@ -1367,3 +1367,4 @@ The proof of concept was successful, we have shown that we can get very accurate
 
 
 Transfer Learning has been a big success, and was the best performing network in terms of classification accuracy on the Test Set - however we still only trained for a small number of epochs so we can push this even further.  It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
+
