@@ -5,7 +5,7 @@ image: "/posts/cnn-fruit-classification-title-img.png"
 tags: [Deep Learning, CNN, Data Science, Computer Vision, Python]
 ---
 
-In this project we build & optimise a Convolutional Neural Network to classify images of fruits, with the goal of helping a grocery retailer enhance & scale their sorting & delivery processes. 
+In this project we build & optimize a Convolutional Neural Network to classify images of fruits, with the goal of helping a grocery retailer enhance & scale their sorting & delivery processes. 
 
 # Table of contents
 
@@ -33,7 +33,7 @@ ___
 
 Our client had an interesting proposal put forward to them, and requested our help to assess whether it was viable.
 
-At a recent tech conference, they spoke to a contact from a robotics company that creates robotic solutions that help other businesses scale and optimise their operations.
+At a recent tech conference, they spoke to a contact from a robotics company that creates robotic solutions that help other businesses scale and optimize their operations.
 
 Their representative mentioned that they had built a prototype for a robotic sorting arm that could be used to pick up and move products off a platform.  It would use a camera to "see" the product, and could be programmed to move that particular product into a designated bin, for further processing.
 
@@ -57,7 +57,7 @@ Our first refinement is to add **Dropout** to tackle the issue of overfitting wh
 
 We then add in **Image Augmentation** to our data pipeline to increase the variation of input images for the network to learn from, resulting in a more robust results as well as also address overfitting.
 
-With these additions in place, we utilise *keras-tuner* to optimise our network architecture & tune the hyperparameters.  The best network from this testing contains **3 Convolutional Layers**, each followed by **Max Pooling** Layers.  The first Convolutional Layer has **96 filters**, the second & third have **64 filters**.  The output of this third layer is flattened and passed to a **single Dense (Fully Connected) layer** with **160 neurons**.  The Dense Layer has **Dropout** applied with a **dropout rate of 0.5**.  The output from this is passed to the output layer.  Again, we apply the **relu** activation function on all layers, and use the **adam** optimizer.
+With these additions in place, we utilise *keras-tuner* to optimize our network architecture & tune the hyperparameters.  The best network from this testing contains **3 Convolutional Layers**, each followed by **Max Pooling** Layers.  The first Convolutional Layer has **96 filters**, the second & third have **64 filters**.  The output of this third layer is flattened and passed to a **single Dense (Fully Connected) layer** with **160 neurons**.  The Dense Layer has **Dropout** applied with a **dropout rate of 0.5**.  The output from this is passed to the output layer.  Again, we apply the **relu** activation function on all layers, and use the **adam** optimizer.
 
 Finally, we utilise **Transfer Learning** to compare our network's results against that of the pre-trained **VGG16** network.
 
@@ -75,7 +75,7 @@ In terms of Classification Accuracy on the Test Set, we saw:
 * Baseline Network: **75%**
 * Baseline + Dropout: **85%**
 * Baseline + Image Augmentation: **93%**
-* Optimised Architecture + Dropout + Image Augmentation: **95%**
+* Optimized Architecture + Dropout + Image Augmentation: **95%**
 * Transfer Learning Using VGG16: **98%**
 
 Tuning the networks architecture with Keras-Tuner gave us a great boost, but was also very time intensive - however if this time investment results in improved accuracy then it is time well spent.
@@ -913,7 +913,7 @@ Once we have the testing logic in place - we use want to put in place the specif
 In the code below, we set parameters to:
 
 * Point to the network *function* with the testing logic (hypermodel)
-* Set the metric to optimise for (objective)
+* Set the metric to optimize for (objective)
 * Set the number of random network configurations to test (max_trials)
 * Set the number of times to try each tested configuration (executions_per_trial)
 * Set the details for the output of logging & results
@@ -989,7 +989,7 @@ model.compile(loss = 'categorical_crossentropy',
 
 ```
 <br>
-The below shows us more clearly our optimised architecture:
+The below shows us more clearly our optimized architecture:
 
 ```
 _________________________________________________________________
@@ -1033,7 +1033,7 @@ _________________________________________________________________
 ```
 
 <br>
-Our optimised architecture has a total of 2.7 million parameters, a step up from 1.1 million in the baseline architecture.
+Our optimized architecture has a total of 2.7 million parameters, a step up from 1.1 million in the baseline architecture.
 
 <br>
 #### Training The Updated Network
@@ -1065,7 +1065,7 @@ We run the exact same code as we did for the earlier networks, with the only cha
 <br>
 #### Test Set Classification Accuracy
 
-Our optimised network, with both Dropout & Image Augmentation in place, scored **95%** on the Test Set, again marginally higher than what we had seen from the other networks so far.
+Our optimized network, with both Dropout & Image Augmentation in place, scored **95%** on the Test Set, again marginally higher than what we had seen from the other networks so far.
 
 <br>
 #### Test Set Confusion Matrix
@@ -1100,7 +1100,7 @@ So, while overall our test set accuracy was 95% - for each individual class we s
 * Lemon: 100%
 * Orange: 100%
 
-All classes here are being predicted *at least as accurate or better* when compared to the best network so far - so our optimised architecture does appear to have helped!
+All classes here are being predicted *at least as accurate or better* when compared to the best network so far - so our optimized architecture does appear to have helped!
 
 ___
 <br>
@@ -1113,7 +1113,7 @@ Transfer Learning is an extremely powerful way for us to utilise pre-built, and 
 
 For image based tasks this often means using all the the *pre-learned* features from a large network, so all of the convolutional filter values and feature maps, and instead of using it to predict what the network was originally designed for, piggybacking it, and training just the last part for some other task.
 
-The hope is, that the features which have already been learned will be good enough to differentiate between our new classes, and we’ll save a whole lot of training time (and be able to utilise a network architecture that has potentially already been optimised).
+The hope is, that the features which have already been learned will be good enough to differentiate between our new classes, and we’ll save a whole lot of training time (and be able to utilise a network architecture that has potentially already been optimized).
 
 For our Fruit Classification task we will be utilising a famous network known as **VGG16**.  This was designed back in 2014, but even by todays standards is a fairly heft network.  It was trained on the famous *ImageNet* dataset, with over a million images across one thousand different image classes. Everything from goldfish to cauliflowers to bottles of wine, to scuba divers!
 
@@ -1352,7 +1352,7 @@ In terms of Classification Accuracy on the Test Set, we saw:
 * Baseline Network: **75%**
 * Baseline + Dropout: **85%**
 * Baseline + Image Augmentation: **93%**
-* Optimised Architecture + Dropout + Image Augmentation: **95%**
+* Optimized Architecture + Dropout + Image Augmentation: **95%**
 * Transfer Learning Using VGG16: **98%**
 
 Tuning the networks architecture with Keras-Tuner gave us a great boost, but was also very time intensive - however if this time investment results in improved accuracy then it is time well spent.
@@ -1364,5 +1364,6 @@ ___
 # Growth & Next Steps <a name="growth-next-steps"></a>
 
 The proof of concept was successful, we have shown that we can get very accurate predictions albeit on a small number of classes.  We need to showcase this to the client, discuss what it is that makes the network more robust, and then look to test our best networks on a larger array of classes.
+
 
 Transfer Learning has been a big success, and was the best performing network in terms of classification accuracy on the Test Set - however we still only trained for a small number of epochs so we can push this even further.  It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
