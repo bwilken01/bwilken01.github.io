@@ -17,7 +17,7 @@ In this project we build a Deep Learning based Image Search Engine that will hel
 - [01. Sample Data Overview](#sample-data-overview)
 - [02. Transfer Learning Overview](#transfer-learning-overview)
 - [03. Setting Up VGG16](#vgg16-setup)
-- [04. Image Preprocessing & Featurisation](#image-preprocessing)
+- [04. Image Preprocessing & Featurization](#image-preprocessing)
 - [05. Execute Search](#execute-search)
 - [06. Discussion, Growth & Next Steps](#growth-next-steps)
 
@@ -27,7 +27,7 @@ ___
 
 ### Context <a name="overview-context"></a>
 
-Our client had been analysing their customer feedback, and one thing in particular came up a number of times.
+Our client had been analyzing their customer feedback, and one thing in particular came up a number of times.
 
 Their customers are aware that they have a great range of competitively priced products in the clothing section - but have said they are struggling to find the products they are looking for on the website.
 
@@ -57,9 +57,9 @@ We test two different images, and plot the search results along with the cosine 
 <br>
 ### Discussion, Growth & Next Steps <a name="overview-growth"></a>
 
-The way we have coded this up is very much for the "proof of concept".  In practice we would definitely have the last section of the code (where we submit a search) isolated, and running from all of the saved objects that we need - we wouldn't include it in a single script like we have here.
+The way we have coded this is very much for the "proof of concept".  In practice we would definitely have the last section of the code (where we submit a search) isolated, and running from all of the saved objects that we need - we wouldn't include it in a single script like we have here.
 
-Also, rather than having to fit the Nearest Neighbours to our *feature_vector_store* each time a search is submitted, we could store that object as well.
+Also, rather than having to fit the Nearest Neighbors to our *feature_vector_store* each time a search is submitted, we could store that object as well.
 
 When applying this in production, we also may want to code up a script that easily adds or removes images from the feature store.  The products that are available in the clients store would be changing all the time, so we'd want a nice easy way to add new feature vectors to the feature_vector_store object - and also potentially a way to remove search results coming back if that product was out of stock, or no longer part of the suite of products that were sold.
 
@@ -71,7 +71,7 @@ We only looked at Cosine Similarity here, it would be interesting to investigate
 
 It would be beneficial to come up with a way to quantify the quality of the search results.  This could come from customer feedback, or from click-through rates on the site.
 
-Here we utilised VGG16. It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
+Here we utilized VGG16. It would be worthwhile testing other available pre-trained networks such as ResNet, Inception, and the DenseNet networks.
 
 <br>
 <br>
